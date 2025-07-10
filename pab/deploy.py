@@ -7,7 +7,7 @@ import time
 from .http_client import APCloudyClient
 from .package import PackageManager
 from .exceptions import DeploymentError
-from .utils import print_info, print_error
+from .utils import print_info, print_error, print_success
 
 
 class DeployManager:
@@ -72,20 +72,21 @@ class DeployManager:
         while time.time() - start_time < timeout:
             try:
                 status_data = self.http_client.get_deployment_status(deployment_id)
-                status = status_data.get('status', 'unknown')
+                status = status_data.get('status')
+                print(status_data)
 
-                if status == 'completed':
-                    print_info("Deployment completed successfully!")
+                if status == 'success':
+                    print_success("Deployment completed successfully!")
                     return
-                elif status == 'failed':
-                    error_msg = status_data.get('error', 'Unknown error')
-                    raise DeploymentError(f"Deployment failed: {error_msg}")
-                elif status in ['pending', 'processing']:
+
+                elif status == 'building':
                     print_info(f"Deployment status: {status}")
-                    time.sleep(5)  # Wait 5 seconds before checking again
-                else:
-                    print_info(f"Deployment status: {status}")
+                    print(status_data.get('build_log'))
                     time.sleep(5)
+
+                elif status == 'failed':
+                    error_msg = status_data.get('error')
+                    raise DeploymentError(f"Deployment failed: {error_msg}")
 
             except Exception as e:
                 print_error(f"Error checking deployment status: {str(e)}")

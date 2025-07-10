@@ -132,16 +132,14 @@ class APCloudyClient:
                 return response.json()
             elif response.status_code == 401:
                 raise APIError("Authentication failed. Please run 'pab login' again.")
-            elif response.status_code == 403:
-                raise APIError("Access denied. Check your permissions for this project.")
             elif response.status_code == 404:
                 raise APIError(f"Project '{project_id}' not found.")
             else:
                 error_msg = f"Upload failed with HTTP {response.status_code}"
                 try:
                     error_data = response.json()
-                    if 'error' in error_data:
-                        error_msg += f": {error_data['error']}"
+                    if 'message' in error_data:
+                        error_msg += f": {error_data['message']}"
                 except (ValueError, KeyError):
                     pass
                 raise APIError(error_msg)
@@ -163,7 +161,7 @@ class APCloudyClient:
             APIError: If the status check fails
         """
         try:
-            status_url = f"{self.endpoint}/deployments/{deployment_id}/status"
+            status_url = urljoin(self.endpoint, 'deployment/{}/status'.format(deployment_id))
             response = self._make_authenticated_request('GET', status_url, timeout=30)
 
             if response.status_code == 200:
