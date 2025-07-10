@@ -68,21 +68,32 @@ class DeployManager:
             timeout (int): Timeout in seconds
         """
         start_time = time.time()
+        last_log_length = 0
+        first_status_message = True
 
         while time.time() - start_time < timeout:
             try:
                 status_data = self.http_client.get_deployment_status(deployment_id)
                 status = status_data.get('status')
-                print(status_data)
 
                 if status == 'success':
                     print_success("Deployment completed successfully!")
                     return
 
                 elif status == 'building':
-                    print_info(f"Deployment status: {status}")
-                    print(status_data.get('build_log'))
-                    time.sleep(5)
+                    if first_status_message:
+                        print_info(f"Deployment status: {status}")
+                        first_status_message = False
+
+                    build_log = status_data.get('build_log', '.')
+
+                    if build_log and build_log.strip():
+                        if len(build_log) > last_log_length:
+                            new_logs = build_log[last_log_length:]
+                            print(new_logs, end='')
+                            last_log_length = len(build_log)
+
+                    time.sleep(2)
 
                 elif status == 'failed':
                     error_msg = status_data.get('error')
