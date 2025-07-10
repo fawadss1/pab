@@ -7,7 +7,7 @@ import time
 from .http_client import APCloudyClient
 from .package import PackageManager
 from .exceptions import DeploymentError
-from .utils import print_info, print_error, print_success
+from .utils import print_info, print_error
 
 
 class DeployManager:
@@ -77,7 +77,7 @@ class DeployManager:
                 status = status_data.get('status')
 
                 if status == 'success':
-                    print_success("Deployment completed successfully!")
+                    print("")
                     return
 
                 elif status == 'building':
