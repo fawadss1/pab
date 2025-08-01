@@ -16,14 +16,14 @@ PAB is a command-line tool for deploying Scrapy spiders to APCloudy, similar to 
 You can install PAB using pip:
 
 ```bash
-pip install pab
+pip install pab-cli
 ```
 
 Or install from source:
 
 ```bash
-git clone https://github.com/fawadss1/pab.git
-cd pab
+git clone https://github.com/fawadss1/pab-cli.git
+cd pab-cli
 pip install -e .
 ```
 
@@ -63,7 +63,7 @@ PAB will automatically package your project and deploy it to the specified proje
 You can also specify additional options:
 
 ```bash
-pab deploy 5465 --version v1.0.0 --target /path/to/project
+pab deploy 5465 --version v0.1.0 --target /path/to/project
 ```
 
 ## Commands
@@ -162,7 +162,7 @@ For support, please contact:
 
 ## Changelog
 
-### v1.0.0
+### v0.1.0
 - Initial release
 - Basic authentication and deployment functionality
 - Project and spider management

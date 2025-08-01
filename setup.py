@@ -12,18 +12,18 @@ with open(os.path.join(this_directory, 'README.md'), encoding='utf-8') as f:
 
 # Read version from version.py
 version = {}
-with open(os.path.join(this_directory, 'pab', 'version.py')) as f:
+with open(os.path.join(this_directory, 'pab_cli', 'version.py')) as f:
     exec(f.read(), version)
 
 setup(
-    name='pab',
+    name='pab-cli',
     version=version['__version__'],
     author='Fawad Ali',
     author_email='Fawadstar6@gmail.com',
     description='APCloudy Deployment Tool for Scrapy Spiders',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/fawadss1/pab',
+    url='https://github.com/fawadss1/pab-cli',
     packages=find_packages(),
     classifiers=[
         'Development Status :: 4 - Beta',
@@ -43,19 +43,19 @@ setup(
     ],
     python_requires='>=3.8',
     install_requires=[
-        'click>=8.0.0',
-        'requests>=2.25.0',
-        'colorama>=0.4.4',
+        'click>=8.2.1',
+        'requests>=2.32.4',
+        'colorama>=0.4.6',
     ],
     entry_points={
         'console_scripts': [
-            'pab=pab.cli:main',
+            'pab=pab_cli.cli:main',
         ],
     },
     keywords='scrapy deployment apcloudy spider automation',
     project_urls={
-        'Bug Reports': 'https://github.com/fawadss1/pab/issues',
-        'Source': 'https://github.com/fawadss1/pab',
-        'Documentation': 'https://github.com/fawadss1/pab#readme',
+        'Bug Reports': 'https://github.com/fawadss1/pab-cli/issues',
+        'Source': 'https://github.com/fawadss1/pab-cli',
+        'Documentation': 'https://github.com/fawadss1/pab-cli#readme',
     },
 )

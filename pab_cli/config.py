@@ -24,7 +24,7 @@ class ConfigManager:
         Returns:
             str: API endpoint URL
         """
-        return 'http://10.10.10.32:8000/api/cli'
+        return 'http://10.10.10.11:8000/api/cli'
 
     @staticmethod
     def _get_config_dir():

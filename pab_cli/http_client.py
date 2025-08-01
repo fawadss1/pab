@@ -24,7 +24,7 @@ class APCloudyClient:
 
         self.session.headers.update({
             'Authorization': f'Bearer {self.credentials["access_token"]}',
-            'User-Agent': f'pab/{__version__}'
+            'User-Agent': f'pab-cli/{__version__}'
         })
 
     def _make_authenticated_request(self, method, url, **kwargs):
@@ -80,7 +80,7 @@ class APCloudyClient:
             APIError: If the API request fails
         """
         try:
-            url = urljoin(self.endpoint, 'projects/{}/spiders'.format(project_id))
+            url = urljoin(self.endpoint, 'project/{}/spiders'.format(project_id))
             response = self._make_authenticated_request('GET', url, timeout=30)
 
             if response.status_code == 200:
