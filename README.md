@@ -1,6 +1,17 @@
 # PAB - APCloudy Deployment Tool
 
+[![PyPI version](https://badge.fury.io/py/pab-cli.svg)](https://badge.fury.io/py/pab-cli)
+[![Documentation Status](https://readthedocs.org/projects/pab-cli/badge/?version=latest)](https://pab-cli.readthedocs.io/en/latest/?badge=latest)
+[![Python Support](https://img.shields.io/pypi/pyversions/pab-cli.svg)](https://pypi.org/project/pab-cli/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub stars](https://img.shields.io/github/stars/fawadss1/pab-cli.svg)](https://github.com/fawadss1/pab-cli/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/fawadss1/pab-cli.svg)](https://github.com/fawadss1/pab-cli/issues)
+
 PAB is a command-line tool for deploying Scrapy spiders to APCloudy, similar to how `shub` works with Scrapinghub. It provides an easy way to manage and deploy your web scraping projects to the APCloudy platform.
+
+## 📖 Documentation
+
+For comprehensive documentation, visit: **[https://pab-cli.readthedocs.io/](https://pab-cli.readthedocs.io/en/latest/)**
 
 ## Features
 
