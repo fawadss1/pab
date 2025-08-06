@@ -9,7 +9,12 @@ from .auth import AuthManager
 from .deploy import DeployManager
 from .config import ConfigManager
 from .http_client import APCloudyClient
-from .utils import print_success, print_error, print_info, print_cyan
+from .utils import (
+    print_success,
+    print_error,
+    print_info,
+    print_cyan,
+    create_setup)
 
 
 @click.group()
@@ -80,6 +85,7 @@ def deploy(project_id):
             print_error("Not authenticated. Please run 'pab login' first.")
             sys.exit(1)
 
+        create_setup()
         deploy_manager = DeployManager(config_manager)
 
         print_info(f"Deploying to project: {project_id}")
