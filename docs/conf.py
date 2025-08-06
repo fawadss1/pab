@@ -41,7 +41,6 @@ myst_enable_extensions = [
     "colon_fence",
     "deflist",
     "html_admonition",
-    "linkify",
     "replacements",
     "smartquotes",
     "substitution",
