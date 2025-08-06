@@ -15,10 +15,6 @@ release = '1.0.0'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx.ext.autodoc',
-    'sphinx.ext.viewcode',
-    'sphinx.ext.napoleon',
-    'sphinx.ext.intersphinx',
     'myst_parser',
 ]
 
@@ -37,14 +33,30 @@ source_suffix = {
     '.md': 'markdown',
 }
 
-# -- InterSphinx configuration -----------------------------------------------
-intersphinx_mapping = {
-    'python': ('https://docs.python.org/3', None),
-    'click': ('https://click.palletsprojects.com/', None),
-}
+# -- MyST Parser settings ----------------------------------------------------
+myst_enable_extensions = [
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
+]
 
-# -- Napoleon settings -------------------------------------------------------
-napoleon_google_docstring = True
-napoleon_numpy_docstring = True
-napoleon_include_init_with_doc = False
-napoleon_include_private_with_doc = False
+# Mock imports for modules that aren't available during docs build
+import sys
+from unittest.mock import MagicMock
+
+class Mock(MagicMock):
+    @classmethod
+    def __getattr__(cls, name):
+        return MagicMock()
+
+MOCK_MODULES = ['click', 'requests', 'colorama', 'tabulate', 'cryptography']
+sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)

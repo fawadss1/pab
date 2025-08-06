@@ -16,7 +16,7 @@ def read_readme():
 # Read requirements
 def read_requirements():
     try:
-        with open("requirements.txt", "r", encoding="utf-8") as fh:
+        with open("requirements.txt", encoding="utf-8") as fh:
             return [line.strip() for line in fh if line.strip() and not line.startswith("#")]
     except FileNotFoundError:
         return [
@@ -29,7 +29,7 @@ def read_requirements():
 
 setup(
     name="pab-cli",
-    version="1.0.0",
+    version="0.2.0",
     author="Fawad Ali",
     author_email="fawadstar6@gmail.com",
     description="PAB CLI - APCloudy Deployment Tool for Scrapy Spiders",
