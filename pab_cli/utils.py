@@ -49,7 +49,7 @@ setup(
     author='Fawad',
     author_email='fawadstar6@gmail.com',
     packages=find_packages(),
-    scripts=[""],
+    scripts=[],
     entry_points={'scrapy': ['settings = %(settings)s']},
 )
 """
